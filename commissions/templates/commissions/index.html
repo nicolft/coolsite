@@ -1,0 +1,15 @@
+Log in.
+{# TODO #}
+
+{% if active_comms_list %}
+Active Commissions:
+<ul>
+    {% for commreq in active_comms_list %}
+    <li>{{ commreq.commType }}: {{ commreq.user }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="/commission">Make a commission.</a>
+
+<a href="/tos">See terms of service.</a>
