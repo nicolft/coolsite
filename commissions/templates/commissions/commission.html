@@ -1,0 +1,15 @@
+{% load comms_math %}
+
+{% if active_commtypes_list %}
+Available commissions:
+<ul>
+    {% for commtype in active_commtypes_list %}
+    <li>
+        {{ commtype.name }}: ${{ commtype.price|idiv:100 }}.{{ commtype.price|bitmask:3|stringformat:"02d" }} <br>
+        {{ commtype.description }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+Commissions aren't open right now, sorry!
+{% endif %}

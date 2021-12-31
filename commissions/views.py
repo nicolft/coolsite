@@ -12,7 +12,9 @@ def tos(request):
     return HttpResponse("TOS page.")
 
 def commission(request):
-    return HttpResponse("Commission page.")
+    active_commtypes_list = CommType.objects.filter(active=True).order_by('price')
+    context = {'active_commtypes_list': active_commtypes_list,}
+    return render(request, 'commissions/commission.html', context)
 
 def account(request):
     return HttpResponse("Account page.")
