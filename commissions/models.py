@@ -16,7 +16,7 @@ class CommReq(models.Model):
     commType = models.ForeignKey(CommType, on_delete=models.SET_NULL, null=True)
     date_init = models.DateTimeField(auto_now=True)
     date_mod = models.DateTimeField('last modified', auto_now_add=True)
-    date_accepted = models.DateTimeField()
+    date_accepted = models.DateTimeField(null=True)
     user = models.EmailField(max_length=254)
     user_id = models.PositiveSmallIntegerField()
     complete = models.BooleanField(default=False)

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from .models import CommType, CommReq
 
@@ -19,5 +19,6 @@ def commission(request):
 def account(request):
     return HttpResponse("Account page.")
 
-def view_comm(request, user, user_id):
-    return HttpResponse("Page for a user's commission with a user id.")
+def view_comm(request, id):
+    commreq = get_object_or_404(CommReq, pk=id)
+    return render(request, 'commissions/commreq.html', {'commreq': commreq,})
