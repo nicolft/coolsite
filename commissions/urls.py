@@ -9,6 +9,7 @@ urlpatterns = [
     path('commission/', views.commission, name='commission'),
     path('account/', views.account, name='account'),
     path('commission/<int:id>/', views.view_comm, name='commreq'),
+    path('commission/submit/', views.submit, name='submit'),
 #     todo need to figure out accounts and authentication stuff
 #     then can make commission_request page
 ]

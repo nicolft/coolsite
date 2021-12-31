@@ -3,10 +3,49 @@
 {% if active_commtypes_list %}
 Available commissions:
 <ul>
-    {% for commtype in active_commtypes_list %}
     <li>
+    {% for commtype in active_commtypes_list %}
         {{ commtype.name }}: ${{ commtype.price|idiv:100 }}.{{ commtype.price|bitmask:3|stringformat:"02d" }} <br>
-        {{ commtype.description }}
+        {{ commtype.description }} <br><br>
+
+        {# TODO: make this hidden by default #}
+        <form action="{% url 'commissions:submit' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <input type="hidden" name="commtype_id" value="{{commtype.id}}" />
+
+            <label for="contact{{commtype.id}}">
+                (optional) Preferred form of contact (if left empty, email will be used):
+            </label><br>
+            <input type="text" name="contact" id="contact{{commtype.id}}" /><br><br>
+
+            <label for="file{{commtype.id}}">
+                (optional) Character references
+                (if there are multiple please zip them):
+            </label><br>
+            <input type="file" name="file" id="file{{commtype.id}}" /><br><br>
+
+            <label for="charnotes{{commtype.id}}">
+                (optional) Links to character references and
+                any notes about characters:
+            </label><br>
+            <input type="text" name="charnotes" id="charnotes{{commtype.id}}" /><br><br>
+
+            <label for="comments{{commtype.id}}">
+                (optional) Any comments about the commission?
+                What do you like about my art?
+                What do you want to see from my art?:
+            </label><br>
+            <input type="text" name="comments" id="comments{{commtype.id}}" /><br><br>
+
+            <input type="checkbox" name="tos" id="tos{{commtype.id}}" />
+            <label for="tos{{commtype.id}}">
+                I have read and I agree to the <a href="{% url 'commissions:tos' %}">Terms of Service.
+            </label><br>
+
+            <input type="submit" />
+        </fieldset>
+        </form>
     </li>
     {% endfor %}
 </ul>
