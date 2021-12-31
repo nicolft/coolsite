@@ -27,4 +27,5 @@ class CommReq(models.Model):
     comments = models.CharField(max_length=2000, null=True)
 
     def __str__(self):
-        return str(self.user) + '-' + str(self.user_id)
+        return str(self.id) + '-' + str(self.user)
+#         return str(self.user) + '-' + str(self.user_id)

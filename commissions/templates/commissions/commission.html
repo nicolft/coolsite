@@ -3,8 +3,8 @@
 {% if active_commtypes_list %}
 Available commissions:
 <ul>
-    <li>
     {% for commtype in active_commtypes_list %}
+    <li>
         {{ commtype.name }}: ${{ commtype.price|idiv:100 }}.{{ commtype.price|bitmask:3|stringformat:"02d" }} <br>
         {{ commtype.description }} <br><br>
 
@@ -40,7 +40,7 @@ Available commissions:
 
             <input type="checkbox" name="tos" id="tos{{commtype.id}}" />
             <label for="tos{{commtype.id}}">
-                I have read and I agree to the <a href="{% url 'commissions:tos' %}">Terms of Service.
+                I have read and I agree to the <a href="{% url 'commissions:tos' %}">Terms of Service</a>.
             </label><br>
 
             <input type="submit" />

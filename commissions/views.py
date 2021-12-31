@@ -11,7 +11,7 @@ def index(request):
         CommReq.objects
         .filter(complete=False) #Still in-progress
         .filter(date_accepted__isnull=False) #Accepted
-        .order_by('-date_accepted'))
+        .order_by('date_accepted'))
     context = {'active_comms_list': active_comms_list,}
     return render(request, 'commissions/index.html', context)
 
